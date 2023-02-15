@@ -1,0 +1,8 @@
+ports:
+- port: 8000
+  onOpen: open-preview
+tasks:
+- before: >
+    export DEV_HOST=$(gp url 8000)
+  init: npm install
+  command: npm start
