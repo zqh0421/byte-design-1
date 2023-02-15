@@ -46,10 +46,10 @@ To add a component to this library, follow these steps using the Button componen
                 import './index.less'
 
                 const Button: FC<{ content: string }> = (props) => {
-                return (
-                    <button className="test">{props.content}</button>
-                )
-};
+                    return (
+                        <button className="test">{props.content}</button>
+                    )
+                };
                 export default Button;
             ```
         - index.less
@@ -68,9 +68,11 @@ To add a component to this library, follow these steps using the Button componen
                 }
             ```
 2. Export the new component in `path/to/src/index.ts`: 
+   
     `export { default as Button } from './Button';`
 
 3. Add a route for the component in `path/to/.dumi/tmp/core/components.tsx`: 
+
     ```tsx
         export const componentRoutes = {
             // ...
@@ -81,16 +83,16 @@ To add a component to this library, follow these steps using the Button componen
             },
         }
         export const componentLazy = {
-            // ...
+        // ...
             'components/Button/index': React.lazy(() => import(/* webpackChunkName: "Button__index.md" */'./src/Button/index.md')),
         }
     ```
 
 4. Add content in `path/to/.dumi/tmp/dumi/meta/components.ts`: 
-    ```
+    ```ts
         import { demos as dm_button, frontmatter as fm_button, toc as toc_button, texts as txt_button } from '../../../../src/Button/index.md?type=meta';
     ```
-    ```
+    ```ts
         export const componentsMeta = {
             // ...
             'components/Button/index': {
