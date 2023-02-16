@@ -8,7 +8,7 @@ A react library developed with dumi.
 
 ## Getting Started
 ### Dev environment: Gitpod (Recommended)
-Use a fresh dev environment in [Gitpod](https://www.gitpod.io) by pressing the **code now** badge above.
+Use a fresh dev environment in [Gitpod](https://www.gitpod.io) by pressing the **code now**[![GitPod - Code Now](https://img.shields.io/badge/Gitpod-code%20now-blue.svg?longCache=true)] badge above.
 
 
 ### Dev environment: Local machine
@@ -31,11 +31,28 @@ Currently, some changes have happened in the following dirs/files:
 To add a component to this library, follow these steps using the Button component as an example:
 1. Create dirs and files:
     - path/to/src/Button
-        - index.md
+        - index.zh-CN.md
+            ```md
+                ---
+                    group:
+                    title: 通用型组件
+                ---
+
+                # Button
+
+                这是一个按钮实例。
+
+                ```jsx
+                import { Button } from 'byte-design';
+
+                export default () => <Button content="按钮" />
+                ```
+            ```
+        - index.en-US.md
             ```md
                 ---
                 group:
-                    title: 静态组件
+                    title: General
                     order: (OPTIONAL)
                 ---
 

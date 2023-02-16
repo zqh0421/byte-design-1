@@ -1,6 +1,6 @@
 ---
 group:
-  title: static
+  title: General
 ---
 
 # Button

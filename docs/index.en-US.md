@@ -1,6 +1,6 @@
 ---
 hero:
-  title: library
+  title: Byte Design
   description: A react library developed with dumi
   actions:
     - text: Guide
