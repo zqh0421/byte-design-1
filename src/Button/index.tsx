@@ -3,7 +3,7 @@ import './index.less'
 
 const Button: FC<{ content: string }> = (props) => {
   return (
-    <button className="test">{props.content}</button>
+    <button className="test ">{props.content}</button>
   )
 };
 
