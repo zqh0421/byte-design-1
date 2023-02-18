@@ -1,0 +1,76 @@
+@import '../variables';
+$alert-border-radius: .4rem !default;
+$alert-padding-y: .375rem !default;
+$alert-padding-x: .75rem !default;
+
+$alert-width: 30rem;
+$alert-line-height: $line-height-lg;
+
+$alert-title-font-size: $font-size-base  !default;
+$alert-message-font-size: $font-size-base * 0.8 !default;
+
+$alert-icon-right: 1rem;
+$alert-icon-top: .5rem;
+
+$alert-icon-font-weight: $font-weight-normal;
+$alert-icon-font-size: $sub-sup-font-size;
+
+@mixin alert-color($background,$color) {
+  color: $color;
+  background-color: $background;
+}
+
+.alert {
+  display: block;
+  position: relative;
+  width: $alert-width;
+  @include alert-color($primary, $white);
+  border-radius: $alert-border-radius;
+  border-width:$border-width;
+  border-style: solid;
+  padding: $alert-padding-y $alert-padding-x;
+
+  .alert-title {
+      margin-bottom: 0;
+      line-height:$alert-line-height;
+      font-size: $alert-title-font-size;
+  }
+  .alert-message {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: $alert-line-height;
+      font-size: $alert-message-font-size;
+  }
+  .alert-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $alert-padding-y $alert-padding-x;
+    color: inherit;
+    cursor: pointer;
+  }
+  .bold-title{
+    font-weight: $font-weight-bold;
+  }
+
+  > i:last-child { // 无用
+      position: absolute;
+      right: $alert-icon-right;
+      top: $alert-icon-top;
+      font-style: normal;
+      cursor: pointer;
+      font-weight: $alert-icon-font-weight;
+      font-size: $alert-icon-font-size;
+  }
+}
+
+
+.alert-success {
+  @include alert-color($success, $white);
+}
+.alert-danger {
+  @include alert-color($danger, $white);
+}
+.alert-warning {
+  @include alert-color($warning, $white);
+}

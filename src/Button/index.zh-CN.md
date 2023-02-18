@@ -12,9 +12,9 @@ import { Button } from 'byte-design';
 
 export default () => 
   <>
-    <Button>Hello dumi!</Button>
-    <Button btnType="primary">Hello dumi!</Button>  
-    <Button btnType="danger">Hello dumi!</Button>
+    <Button>General Button</Button>
+    <Button btnType="primary">Primary Button</Button>  
+    <Button btnType="danger">Danger Button</Button>
     <Button disabled>disabled</Button>
   </>
 ```
@@ -24,7 +24,7 @@ import { Button } from 'byte-design';
 
 export default () => 
   <>
-    <Button btnType="link" href="mockhref.com">Hello dumi!</Button> 
+    <Button btnType="link" href="mockhref.com">Link Button</Button> 
     <Button btnType="link" href="mockhref.com" disabled>disabled</Button>  
   </>
 ```
