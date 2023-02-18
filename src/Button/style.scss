@@ -1,0 +1,137 @@
+@import '../variables';
+// 按钮基本属性
+$btn-font-weight:             400;
+$btn-padding-y:               .375rem !default;
+$btn-padding-x:               .75rem !default;
+$btn-font-family:             $font-family-base !default;
+$btn-font-size:               $font-size-base !default;
+$btn-line-height:             $line-height-base !default;
+
+//不同大小按钮的 padding 和 font size
+$btn-padding-y-sm:            .25rem !default;
+$btn-padding-x-sm:            .5rem !default;
+$btn-font-size-sm:            $font-size-sm !default;
+
+$btn-padding-y-lg:            .5rem !default;
+$btn-padding-x-lg:            1rem !default;
+$btn-font-size-lg:            $font-size-lg !default;
+
+// 按钮边框
+$btn-border-width:            $border-width !default;
+
+// 按钮其他
+$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+$btn-disabled-opacity:        .65 !default;
+
+// 链接按钮
+$btn-link-color:              $link-color !default;
+$btn-link-hover-color:        $link-hover-color !default;
+$btn-link-disabled-color:     $gray-600 !default;
+
+
+// 按钮 radius
+$btn-border-radius:           $border-radius !default;
+$btn-border-radius-lg:        $border-radius-lg !default;
+$btn-border-radius-sm:        $border-radius-sm !default;
+
+$btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+@mixin button-size($padding-y, $padding-x, $font-size, $border-raduis) {
+    padding: $padding-y $padding-x;
+    font-size: $font-size;
+    border-radius: $border-raduis;
+  }
+  @mixin button-style(
+    $background,
+    $border,
+    $color,
+    $hover-background: lighten($background, 7.5%), // scss内置函数
+    $hover-border: lighten($border, 10%),
+    $hover-color: $color,
+  ) {
+    color: $color;
+    background: $background;
+    border-color: $border;
+    &:hover {
+      color: $hover-color;
+      background: $hover-background;
+      border-color: $hover-border;    
+    }
+    &:focus,
+    &.focus {
+      color: $hover-color;
+      background: $hover-background;
+      border-color: $hover-border;  
+    }
+    &:disabled,
+    &.disabled {
+      color: $color;
+      background: $background;
+      border-color: $border;    
+    }
+  }
+
+.btn {
+    position: relative;
+    display: inline-block;
+    font-weight: $btn-font-weight;
+    line-height: $btn-line-height;
+    color: $body-color;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: $btn-border-width solid transparent;
+    @include button-size( $btn-padding-y,  $btn-padding-x,  $btn-font-size,  $border-radius);
+    box-shadow: $btn-box-shadow;
+    cursor: pointer;
+    transition: $btn-transition;
+    &.disabled, // 选择带disabled属性和类名的标签
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: $btn-disabled-opacity;
+      box-shadow: none;
+      > * {
+        pointer-events: none;
+      }
+    }
+  }
+  
+  .btn-lg {
+    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+  }
+  .btn-sm {
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+  }
+  .btn-primary {
+    @include button-style($primary, $primary, $white)
+  }
+  .btn-danger {
+    @include button-style($danger, $danger, $white)
+  }
+  
+  .btn-default {
+    @include button-style($white, $gray-400, $body-color, $white, $primary, $primary)
+  }
+  
+  .btn-link { // 额外设置link button样式
+    font-weight: $font-weight-normal;
+    color: $btn-link-color;
+    text-decoration: $link-decoration;
+    box-shadow: none;
+    &:hover {
+      color: $btn-link-hover-color;
+      text-decoration: $link-hover-decoration; 
+    }
+    &:focus,
+    &.focus {
+      text-decoration: $link-hover-decoration;
+      box-shadow: none;
+    }
+    &:disabled,
+    &.disabled {
+      color: $btn-link-disabled-color;
+      pointer-events: none;
+    }
+  }
+  

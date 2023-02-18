@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import React from "react";
 import { AnchorHTMLAttributes } from "react";
-import './style.scss'
 
 export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
