@@ -1,0 +1,58 @@
+@import '../variables';
+
+$base-color: darken($primary, 10%);
+.calendar-button {
+  background-color: transparent;
+  height: 2.4rem;
+  width: 2.4rem;
+  line-height: 2rem;
+  color: $base-color;
+  border: none;
+  padding: 0;
+  margin: 0.2rem 0.2rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s linear, color 0.2s linear;
+
+  text-transform: uppercase;
+  &:hover {
+    background-color: $base-color;
+    color: white;
+  }
+  &:focus {
+    outline: 2px solid $base-color;
+    outline-offset: 2px;
+  }
+  &:active {
+    background-color: $base-color;
+    border-color: $base-color;
+    color: white;
+  }
+}
+thead {
+  position: relative;
+  .calendar-header {
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      border-bottom: 0.1rem solid $gray-400;
+      left: 0;
+      top: 2rem;
+    }
+    th {
+      padding-bottom: 1rem;
+    }
+  }
+}
+.is-today{
+  background-color: lighten($base-color, 60%);
+}
+.not-current-month{
+  opacity: 0.5;
+}
+.is-selected{
+  background-color: $base-color;
+  color: white;
+}
