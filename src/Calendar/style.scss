@@ -30,10 +30,13 @@ $base-color: darken($primary, 10%);
     color: white;
   }
 }
+table{
+  width: 100%;
+}
 thead {
   position: relative;
   .calendar-header {
-    &:after {
+    &::after {
       position: absolute;
       content: '';
       width: 100%;
@@ -46,6 +49,11 @@ thead {
     }
   }
 }
+tbody{
+  tr{
+    text-align: center;
+  }
+}
 .is-today{
   background-color: lighten($base-color, 60%);
 }
@@ -56,15 +64,31 @@ thead {
   background-color: $base-color;
   color: white;
 }
+
 // layout
 .layout-container{
   display: flex;
   flex-direction: column;
+  width: 29rem;
+  height: 35rem;
+  padding: 15px;
   .layout-header{
+    display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 0.4rem;
   }
   .layout-body{
-    flex: 1;
+    // flex: 1;
+  }
+  .layout-footer{
+    &::before{
+      content: '';
+      border-bottom: 0.1rem solid $gray-400;
+      display: block;
+      left: 0;
+      top: 2rem;
+      margin-bottom: 1rem;
+    }
   }
 }
