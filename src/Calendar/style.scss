@@ -56,3 +56,15 @@ thead {
   background-color: $base-color;
   color: white;
 }
+// layout
+.layout-container{
+  display: flex;
+  flex-direction: column;
+  .layout-header{
+    align-items: center;
+    justify-content: space-between;
+  }
+  .layout-body{
+    flex: 1;
+  }
+}
