@@ -11,7 +11,7 @@ const CalendarButton: React.FC<React.ButtonHTMLAttributes<HTMLElement>> = ({
   return <button className={classes}>{children}</button>;
 };
 
-interface ArrowButtonProps extends React.BaseHTMLAttributes<HTMLElement> {
+interface ArrowButtonProps extends React.HTMLAttributes<HTMLElement> {
   icon: 'arrow-left' | 'arrow-right';
 }
 
