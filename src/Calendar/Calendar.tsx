@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import DateView from './DateView';
 import MonthYearView from './MonthYearView';
-
+import './style.scss'
 const current = dayjs();
 const initCalendar = {
   year: current.year(),
@@ -15,7 +15,7 @@ const Calendar = () => {
   const [calendar, setCalendar] = useState(initCalendar); // 用useText优化
   // tabIndex：使得元素可以被聚焦
   return (
-    <div tabIndex={0}>
+    <div tabIndex={0} className="calendar">
       {isDateView ? (
         <DateView calendar={calendar} setCalendar={setCalendar} />
       ) : (

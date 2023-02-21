@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 // 管理聚焦和失焦事件
-// 作为父组件，接收blur和focus事件的冒泡
+// 在React中可以作为父组件，接收blur和focus事件的冒泡
 interface FocusManagerProps extends React.HTMLAttributes<HTMLDivElement> {
   childFocus: Function;
   childBlur: Function;

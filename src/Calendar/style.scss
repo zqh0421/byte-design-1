@@ -69,9 +69,6 @@ tbody{
 .layout-container{
   display: flex;
   flex-direction: column;
-  width: 29rem;
-  height: 30rem;
-  padding: 15px;
   .layout-header{
     display: flex;
     align-items: center;
@@ -91,4 +88,14 @@ tbody{
       margin-bottom: 1rem;
     }
   }
+}
+
+// calendar
+.calendar{
+  width: 27rem;
+  height: 29rem;
+  padding: 15px;
+  border: 0.1rem solid $primary;
+  border-radius: 1.5%;
+  margin: 1rem 0;
 }
