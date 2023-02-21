@@ -34,10 +34,9 @@ const DatePicker: React.FC<DatePickerProps> = ({ calendar, selectedDate }) => {
         {weeks.map((week, i) => (
           <tr key={i}>
             {week.map((day, j) => {
-              const isToday = dayjs().date() === day.date()
+              const isToday = day.format('YYYY/MM/DD') === dayjs().format('YYYY/MM/DD')
               const notCrrentMonth = dayjs().month() !== day.month()
               const isSelected = day.diff(selectedDate) === 0 
-              
               const classes = classnames({
                 'is-today': isToday,
                 'not-current-month': notCrrentMonth,

@@ -1,29 +1,44 @@
-import React from 'react';
+import dayjs from 'dayjs';
+import React, { FC } from 'react';
 import Button from '../Button';
-import Icon from '../Icon';
+import { ArrowButton } from './CalendarButton';
 import CalendarLayout from './CalendarLayout';
 import DatePicker from './DatePicker';
-const DateView = () => {
+export interface DateViewProps {
+  calendar: {
+    year: number;
+    monthIndex: number;
+  };
+  setCalendar: Function;
+}
+const DateView: FC<DateViewProps> = ({ calendar, setCalendar }) => {
+  const { year, monthIndex } = calendar;
+  const toPreMonth = () => {
+    const preMonthIndex = (monthIndex - 1 + 12) % 12;
+    const preYear = year + Math.floor((monthIndex - 1) / 12);
+    setCalendar({ year: preYear, monthIndex: preMonthIndex });
+  };
+  const toNextMonth = () => {
+    const nextMonthIndex = (monthIndex + 1) % 12;
+    const nextYear = year + Math.floor((monthIndex + 1) / 12);
+
+    setCalendar({ year: nextYear, monthIndex: nextMonthIndex });
+  };
+  const toToday = () => {
+    setCalendar({year:dayjs().year(), monthIndex:dayjs().month()})
+  }
   return (
     <CalendarLayout
       headerElement={{
-        leftElement: (
-          <Icon
-            icon="arrow-left"
-            theme="primary"
-            size="lg"
-            onClick={() => 0}
-            style={{ cursor: 'pointer' }}
-          />
-        ),
-        middleElement: <p>2023年2月</p>,
-        rightElement: <Icon icon="arrow-right" theme="primary" size="lg" />,
+        leftElement: <ArrowButton icon="arrow-left" onClick={toPreMonth} />,
+        middleElement: <p>{`${year}年${monthIndex + 1}月`}</p>,
+        rightElement: <ArrowButton icon="arrow-right" onClick={toNextMonth} />,
       }}
       bodyElement=<DatePicker
-        calendar={{ year: 2023, monthIndex: 1 }}
+        calendar={calendar}
         selectedDate={new Date(2023, 1, 27)}
       />
-      footerElement=<Button btnType="primary">Today</Button>
+      footerElement=<Button btnType="primary" onClick={toToday}>Today</Button>
     />
   );
 };

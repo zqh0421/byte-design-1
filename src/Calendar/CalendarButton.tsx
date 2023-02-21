@@ -1,10 +1,26 @@
-import React from 'react';
+import Button from 'byte-design/Button';
+import Icon from 'byte-design/Icon';
 import classnames from 'classnames';
+import React from 'react';
 import './style.scss';
-const CalendarButton: React.FC<
-  React.ButtonHTMLAttributes<HTMLElement>
-> = ({ children,className }) => {
-  const classes = classnames(className, 'calendar-button')
+const CalendarButton: React.FC<React.ButtonHTMLAttributes<HTMLElement>> = ({
+  children,
+  className,
+}) => {
+  const classes = classnames(className, 'calendar-button');
   return <button className={classes}>{children}</button>;
 };
+
+interface ArrowButtonProps extends React.BaseHTMLAttributes<HTMLElement> {
+  icon: 'arrow-left' | 'arrow-right';
+}
+
+const ArrowButton: React.FC<ArrowButtonProps> = ({ icon, onClick }) => {
+  return (
+    <Button onClick={onClick}>
+      <Icon icon={icon} theme="primary" size="lg" />
+    </Button>
+  );
+};
+export { ArrowButton };
 export default CalendarButton;
