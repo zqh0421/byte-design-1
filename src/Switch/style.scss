@@ -1,44 +1,94 @@
 @import '../_variables.scss';
 
-$width: 80px;
+$width: var(--switch-width, 50px);
+$switch-children-font-size: var(--switch-font-size, small);
 $height: calc($width / 2.0);
 $padding: calc($width / 20.0);
-$color-unchecked: $gray-200;
+$color-unchecked: $gray-400;
 $color-checked: $primary;
 $color-checked-hover: lighten($color-checked, 10%);
 $color-unchecked-hover: darken($color-unchecked, 10%);
+$color-checked-disabled: lighten($color-checked, 20%);
+$color-unchecked-disabled: lighten($color-unchecked, 5%);
 $color-shadow: rgba(0,0,0,0.2);
 
+.wrapping {
+  min-width: $width;
+  display: inline-block;
+}
+
 .switch-container {
-  width: $width;
+  min-width: $width;
   height: $height;
   border-radius: $height;
   background: $color-unchecked;
   position: relative;
   box-shadow: 2px 2px 4px $color-shadow;
   $btn-width: calc($height - $padding * 2);
-  .switch-btn {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  vertical-align: center;
+  padding: 0 $padding;
+  user-select: none;
+  .switch-children {
+    padding-inline-start: 28px;
+    padding-inline-end: 9px;
+    display: block;
+    color: #fff;
+    font-size: $switch-children-font-size;
+    transition: padding-inline-start 0.3s ease-in-out;
+    transition: padding-inline-end 0.3s ease-in-out;
+  }
+  &::before {
+    content: '';
     width: $btn-width;
     height: $btn-width;
     background: #fff;
     border-radius: $btn-width;
     position: absolute;
     top: $padding;
-    left: $padding;
+    bottom: 0;
     box-shadow: 2px 2px 4px $color-shadow;
-    transition: transform 0.3s ease-in-out;
-    &.switch-btn-checked {
-      transform: translateX(calc($width - $height));
-    }
-  }
+    transition: all 0.3s ease-in-out;
+    // .switch-loading {
+    //   $switch-loading-width: calc($btn-width - $padding - 3.2px);
+    //   width: $switch-loading-width;
+    //   height: $switch-loading-width;
+    //   // background-color: black;
+    //   // border-radius: 50%;
+    //   // border: 1.6px solid $color-unchecked-disabled;
+    //   // position: absolute;
+    //   // top: calc($padding / 2.0);
+    //   // left: calc($padding / 2.0);
+    //   &.switch-loading-checked {
+    //     border-color: $color-checked-disabled;
+    //   }
+    // }
+  } 
   &:hover {
     background: $color-unchecked-hover;
+    cursor: pointer;
+  }
+  &.switch-container-disabled {
+    background: $color-unchecked-disabled;
+    &:hover {
+      cursor: not-allowed;
+    }
   }
   &.switch-container-checked {
     background: $color-checked;
+    flex-direction: row-reverse;
+    .switch-children {
+      padding-inline-start: 9px;
+      padding-inline-end: 28px;
+    }
+    &:hover {
+      background: $color-checked-hover;
+    }
+    &.switch-container-disabled {
+      background: $color-checked-disabled;
+    }
   }
-  &.switch-container-checked:hover {
-    background: $color-checked-hover;
-  }
-  transition: background 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
