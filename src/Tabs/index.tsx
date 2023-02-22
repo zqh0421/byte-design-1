@@ -1,32 +1,31 @@
-import { forceReRender } from '@storybook/react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 
-import './style.scss'
+import './style.scss';
 
-export type TabsType = 'line' | 'card' | 'editable-card'
-export type TabsPosition = 'top' | 'right' | 'bottom' | 'left'
+export type TabsType = 'line' | 'card' | 'editable-card';
+export type TabsPosition = 'top' | 'right' | 'bottom' | 'left';
 export interface ItemProps {
-  key: string
-  label: string
-  children: string
+  key: string;
+  label: string;
+  children: string;
 }
 
 export interface TabsProps {
-  rootClassName?: string
-  type?: TabsType
-  size?: SizeType
-  hideAdd?: boolean
-  centered?: boolean
-  addIcon?: React.ReactNode
+  rootClassName?: string;
+  type?: TabsType;
+  size?: SizeType;
+  hideAdd?: boolean;
+  centered?: boolean;
+  addIcon?: React.ReactNode;
   onEdit?: (
     e: React.MouseEvent | React.KeyboardEvent | string,
-    action: 'add' | 'remove'
-  ) => void
-  children?: React.ReactNode
-  items?: ItemProps[]
+    action: 'add' | 'remove',
+  ) => void;
+  children?: React.ReactNode;
+  items?: ItemProps[];
 }
 
-function Tabs ({
+function Tabs({
   // type,
   // className,
   // rootClassName,
@@ -41,54 +40,59 @@ function Tabs ({
   animated,
   ...props
 }: TabsProps) {
-  const [tabs, setTabs] = useState(items)
-  const [selected, setSelected] = useState(0)
-  const [counter, setCounter] = useState(items.length + 1)
+  const [tabs, setTabs] = useState(items);
+  const [selected, setSelected] = useState(0);
+  const [counter, setCounter] = useState(items.length + 1);
 
-  const animationBar = useRef(null)
-  const tabsRef = useRef(null)
+  const animationBar = useRef(null);
+  const tabsRef = useRef(null);
 
-  function getMap () {
+  function getMap() {
     if (!tabsRef.current) {
       // Initialize the Map on first usage.
-      tabsRef.current = new Map()
+      tabsRef.current = new Map();
     }
-    return tabsRef.current
+    return tabsRef.current;
   }
 
-  function moveBar (index): void {
-    const itemRect = getMap().get(index).getBoundingClientRect()
-    animationBar.current.style.left = itemRect.x + 'px'
-    animationBar.current.style.width = itemRect.width + 'px'
-    animationBar.current.style.height = itemRect.height-1 + 'px'
+  function moveBar(index): void {
+    const itemRect = getMap().get(index).getBoundingClientRect();
+    animationBar.current.style.left = itemRect.x + 'px';
+    animationBar.current.style.width = itemRect.width + 'px';
+    animationBar.current.style.height = itemRect.height - 1 + 'px';
   }
 
-  function handleClick (index) {
-    setSelected(index)
+  function handleClick(index) {
+    setSelected(index);
   }
 
-  function addTab (): void {
-    const index = counter
-    setCounter(counter + 1)
-    console.log(index)
+  function addTab(): void {
+    const index = counter;
+    setCounter(counter + 1);
+    console.log(index);
     const newTab = {
       key: index.toString(),
       label: `Tab ${index}`,
-      children: `Content of Tab Pane ${index}`
-    }
-    setTabs(tabs.concat(newTab))
+      children: `Content of Tab Pane ${index}`,
+    };
+    setTabs(tabs.concat(newTab));
   }
   // TODO: add remove tabs functionality
-  function removeTab (index: number): void {
-    setTabs(prev => {
-      prev.splice(index, 1)
-      return prev
-    })
-  }
+  // function removeTab (index: number): void {
+  //   setTabs(prev => {
+  //     prev.splice(index, 1)
+  //     return prev
+  //   })
+  // }
 
   useEffect(() => {
-    moveBar(selected)
-  }, [selected])
+    moveBar(selected);
+  }, [selected]);
+
+  useEffect(() => {
+    if(tabs)
+      setSelected(tabs.length - 1);
+  }, [tabs]);
 
   return (
     <>
@@ -101,18 +105,23 @@ function Tabs ({
             ></div>
             {tabs?.map((item, index) => {
               const tabColor =
-                index === selected ? 'text-yellow-200' : 'text-white'
+                index === selected ? 'text-yellow-200' : 'text-white';
               return (
-                <div key={item.key} className='nav-key-container flex flex-row shrink-0'>
+                <div
+                  key={item.key}
+                  className="nav-key-container flex flex-row shrink-0"
+                >
                   <div
                     className={`nav-key border cursor-pointer p-1 bg-blue-300 ${tabColor} rounded-t-md shrink-0 shadow-lg hover:bg-blue-500 transition-colors `}
-                    onClick={() => { handleClick(index) }}
+                    onClick={() => {
+                      handleClick(index);
+                    }}
                     ref={(node) => {
-                      const map = getMap()
+                      const map = getMap();
                       if (node != null) {
-                        map.set(index, node)
+                        map.set(index, node);
                       } else {
-                        map.delete(index)
+                        map.delete(index);
                       }
                     }}
                   >
@@ -121,22 +130,24 @@ function Tabs ({
                   {/* <button className='rounded-r-full p-0 w-8 h-8 m-0 hidden' onClick={() => { removeTab(index) }}> x </button> */}
                   {/* TODO: add remove tab functionality */}
                 </div>
-              )
+              );
             })}
             <button
               className="add-btn bg-white text-black p-0 rounded-full h-8 w-8"
-              onClick={() => { addTab() }}
+              onClick={() => {
+                addTab();
+              }}
             >
               +
             </button>
           </div>
         </div>
         <div className="tab-content border-y border-grey-400 min-h-[400px] bg-green-200 text-black p-2">
-          {tabs[selected].children ?? ''}
+          {tabs[selected]?.children ?? ''}
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Tabs
+export default Tabs;

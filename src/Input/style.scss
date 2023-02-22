@@ -1,17 +1,20 @@
+$input-height-lg: 40px;
+$input-height-md: 32px;
+$input-height-sm: 24px;
+
 .container {
-  width: 60%;
+  width: 100%;
   display: flex;
   padding: 0;
   color: #000000;
   font-weight: 300;
   border-radius: 0.375rem;
-  border-width: 1px;
-  border-color: #000000;
-  border-style: solid;
+
+  outline: black solid 1px
 }
 
 .input {
-  z-index: 10;
+  z-index: 1;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   font-weight: 300;
@@ -22,8 +25,14 @@
   border-width: 0px;
 }
 
+.input-disabled {
+  background-color: #c6cbd3;
+  cursor:not-allowed;
+}
+
 .input:focus {
   outline-style: solid;
+  outline-width: 2px;
   outline-color: #5290fb;
 }
 
@@ -40,6 +49,7 @@
   border-bottom-left-radius: 0.375rem;
   border-right-width: 1px;
   border-color: #000000;
+  white-space: nowrap;
 }
 
 .suffix {
@@ -55,4 +65,15 @@
   border-width: 0;
   border-left-width: 1px;
   border-color: #000000;
+  white-space: nowrap;
+}
+
+.rounded-r-md {
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
+.rounded-l-md {
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
 }

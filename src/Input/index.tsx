@@ -17,6 +17,8 @@ interface InputProps {
   defaultValue?: string;
   value?: string;
   onChange?: () => void;
+  required?: boolean;
+  type?: string;
 }
 
 const Input: FC<InputProps> = ({
@@ -31,23 +33,31 @@ const Input: FC<InputProps> = ({
   value,
   defaultValue = '',
   onChange,
+  required = false,
+  type = 'text'
 }: InputProps) => {
   const inputRef = useRef(null);
   const [inputContent, setInputContent] = useState(
-    `${prefix}${defaultValue}${suffix}`
+    `${defaultValue}`
   );
+  
+  const heightOfSize = {
+    'sm': '24px',
+    'md': '32px',
+    'lg': '40px',
+  }
 
   const classes = {
     container: classNames(
-      { 'h-[40px]': size === 'lg' },
-      { 'h-[32px]': size === 'md' },
-      { 'h-[24px]': size === 'sm' },
+      `h-[${heightOfSize[size]}]`,
       'container'
     ),
     input: classNames(
-      { 'rounded-l-md': prefix.length === 0 },
+      { 'rounded-r-md': prefix.length === 0 },
       { 'rounded-l-md': suffix.length === 0 },
-      'input'
+      { 'input-disabled': disabled },
+      'input',
+      className
     ),
   };
 
@@ -61,14 +71,15 @@ const Input: FC<InputProps> = ({
         )}
         <input
           className={classes.input}
-          type="text"
-          id="name"
+          type={type}
+          id={id}
           name="name"
-          required
+          required={required}
           placeholder={placeholder}
           minLength={4}
           maxLength={maxLength}
           size={10}
+          disabled={disabled}
           onChange={(e) => {
             setInputContent(`${prefix}${e.target.value}${suffix}`);
           }}
