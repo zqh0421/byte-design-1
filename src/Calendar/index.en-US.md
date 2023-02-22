@@ -1,11 +1,22 @@
 ---
 group:
-  title: 数据展示型组件
+  title: Data Display
 ---
 
-## 日历
+## Calendar
+Click the `Left and Right Arrows` buton to switch months, and click the `Today` button to return to the current month.
+```jsx
+import { Calendar } from 'byte-design';
+export default () => <Calendar/>
+```
 
-<code src="./InputDatePicker.tsx"></code>
+
+## Select Date
+Click on the `Input Box` to select a date.
+```jsx
+import {InputDatePicker} from 'byte-design/Calendar'
+export default () => <InputDatePicker/>
+```
 
 
 
