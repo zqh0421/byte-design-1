@@ -1,6 +1,8 @@
 import React, { useRef, FC, useState } from 'react';
 import classNames from 'classnames';
 
+import './style.scss'
+
 type InputSize = 'lg' | 'md' | 'sm';
 
 interface InputProps {
@@ -40,12 +42,12 @@ const Input: FC<InputProps> = ({
       { 'h-[40px]': size === 'lg' },
       { 'h-[32px]': size === 'md' },
       { 'h-[24px]': size === 'sm' },
-      'flex font-light text-black border-gray-400 border p-0 focus:border-blue-400 rounded-md'
+      'container'
     ),
     input: classNames(
       { 'rounded-l-md': prefix.length === 0 },
       { 'rounded-l-md': suffix.length === 0 },
-      'px-1 bg-slate-200 border-gray-400 font-light shadow-none focus:shadow-lg w-full hover:outline-2 outline-1 outline-blue-500 focus:outline z-10'
+      'input'
     ),
   };
 
@@ -53,7 +55,7 @@ const Input: FC<InputProps> = ({
     <>
       <span className={classes.container}>
         {prefix && (
-          <span className="border-gray-400 border-r bg-gray-200 rounded-l-md px-1 flex justify-center items-center">
+          <span className="prefix">
             {prefix}
           </span>
         )}
@@ -74,7 +76,7 @@ const Input: FC<InputProps> = ({
           ref={inputRef}
         />
         {suffix && (
-          <span className="border-gray-400 border-l bg-gray-200 rounded-r-md px-1 flex justify-center items-center">
+          <span className="suffix">
             {suffix}
           </span>
         )}

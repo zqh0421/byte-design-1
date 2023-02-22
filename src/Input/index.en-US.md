@@ -12,7 +12,7 @@ import { Input } from 'byte-design';
 
 export default () => 
   <>
-    <Input prefix='www.' />
+    <Input prefix='www.' suffix='.com' />
   </>
 ```
 

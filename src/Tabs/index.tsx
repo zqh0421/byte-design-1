@@ -1,6 +1,7 @@
 import { forceReRender } from '@storybook/react'
 import React, { useEffect, useRef, useState } from 'react'
-// import { Tabs as RCTabs, TabsProps as RCTabsProps } from 'rc-tabs'
+
+import './style.scss'
 
 export type TabsType = 'line' | 'card' | 'editable-card'
 export type TabsPosition = 'top' | 'right' | 'bottom' | 'left'
@@ -59,7 +60,7 @@ function Tabs ({
     const itemRect = getMap().get(index).getBoundingClientRect()
     animationBar.current.style.left = itemRect.x + 'px'
     animationBar.current.style.width = itemRect.width + 'px'
-    animationBar.current.style.height = itemRect.height + 'px'
+    animationBar.current.style.height = itemRect.height-1 + 'px'
   }
 
   function handleClick (index) {
@@ -91,20 +92,20 @@ function Tabs ({
 
   return (
     <>
-      <div className="max-w-[600px] justify-center shadow-md rounded-lg overflow-hidden border-gray-500 border">
+      <div className="tab-container">
         <div>
-          <div className="flex flex-row bg-yellow-100 gap-4 px-1 pb-0">
+          <div className="tab-nav">
             <div
               ref={animationBar}
-              className="animation-bar absolute border-b-2 border-blue-700 transition-all ease-in-out"
+              className="tab-animation-bar absolute border-b-2 border-blue-700 transition-all ease-in-out"
             ></div>
             {tabs?.map((item, index) => {
               const tabColor =
                 index === selected ? 'text-yellow-200' : 'text-white'
               return (
-                <div key={item.key} className='flex flex-row shrink-0'>
+                <div key={item.key} className='nav-key-container flex flex-row shrink-0'>
                   <div
-                    className={`border cursor-pointer p-1 bg-blue-300 ${tabColor} rounded-t-md shrink-0 shadow-lg hover:bg-blue-500 transition-colors `}
+                    className={`nav-key border cursor-pointer p-1 bg-blue-300 ${tabColor} rounded-t-md shrink-0 shadow-lg hover:bg-blue-500 transition-colors `}
                     onClick={() => { handleClick(index) }}
                     ref={(node) => {
                       const map = getMap()
@@ -123,14 +124,14 @@ function Tabs ({
               )
             })}
             <button
-              className="bg-white text-black p-0 rounded-full h-8 w-8"
+              className="add-btn bg-white text-black p-0 rounded-full h-8 w-8"
               onClick={() => { addTab() }}
             >
               +
             </button>
           </div>
         </div>
-        <div className="border-y border-grey-400 min-h-[400px] bg-green-200 text-black p-2">
+        <div className="tab-content border-y border-grey-400 min-h-[400px] bg-green-200 text-black p-2">
           {tabs[selected].children ?? ''}
         </div>
       </div>
