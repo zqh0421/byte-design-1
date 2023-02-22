@@ -6,9 +6,10 @@ import './style.scss';
 const CalendarButton: React.FC<React.ButtonHTMLAttributes<HTMLElement>> = ({
   children,
   className,
+  ...rest
 }) => {
   const classes = classnames(className, 'calendar-button');
-  return <button className={classes}>{children}</button>;
+  return <button className={classes} {...rest}>{children}</button>;
 };
 
 interface ArrowButtonProps extends React.HTMLAttributes<HTMLElement> {

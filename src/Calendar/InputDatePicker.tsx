@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
-import DateView from './DateView'
-import DatePicker from './DatePicker'
-import dayjs from 'dayjs'
-import Calendar from './Calendar'
-import FocusManager from './FocusManager'
+import React, { useState } from 'react';
+import Calendar from './Calendar';
+import CalendarInput from './CalendarInput';
+import DateManager from './DateManager';
+import FocusManager from './FocusManager';
+
 const InputDatePicker = () => {
-  const [showCalendar, setShowCalendar] = useState(false)
+  const [showCalendar, setShowCalendar] = useState(false);
+  // 冒泡接收onChange事件？
   return (
     <FocusManager
-      childFocus={()=>setShowCalendar(true)}
-      childBlur={()=>setShowCalendar(false)}
+      childFocus={() => setShowCalendar(true)}
+      childBlur={() => setShowCalendar(false)}
     >
-      <input type="text" />
-      {showCalendar && <Calendar/>}
+      <DateManager>
+        <CalendarInput />
+        {showCalendar && <Calendar />}
+      </DateManager>
     </FocusManager>
-  )
-}
+  );
+};
 
 export default InputDatePicker;

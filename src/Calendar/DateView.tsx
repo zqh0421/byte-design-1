@@ -1,9 +1,10 @@
 import dayjs from 'dayjs';
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import Button from '../Button';
 import { ArrowButton } from './CalendarButton';
 import CalendarLayout from './CalendarLayout';
 import DatePicker from './DatePicker';
+import {DateContext} from './DateManager'
 export interface DateViewProps {
   calendar: {
     year: number;
@@ -13,6 +14,7 @@ export interface DateViewProps {
 }
 const DateView: FC<DateViewProps> = ({ calendar, setCalendar }) => {
   const { year, monthIndex } = calendar;
+  const context = useContext(DateContext)
   const toPreMonth = () => {
     const preMonthIndex = (monthIndex - 1 + 12) % 12;
     const preYear = year + Math.floor((monthIndex - 1) / 12);
@@ -36,7 +38,7 @@ const DateView: FC<DateViewProps> = ({ calendar, setCalendar }) => {
       }}
       bodyElement=<DatePicker
         calendar={calendar}
-        selectedDate={new Date(2023, 1, 27)}
+        selectedDate={context.date}
       />
       footerElement=<Button btnType="primary" onClick={toToday}>Today</Button>
     />
