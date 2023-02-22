@@ -1,0 +1,44 @@
+@import '../_variables.scss';
+
+$width: 80px;
+$height: calc($width / 2.0);
+$padding: calc($width / 20.0);
+$color-unchecked: $gray-200;
+$color-checked: $primary;
+$color-checked-hover: lighten($color-checked, 10%);
+$color-unchecked-hover: darken($color-unchecked, 10%);
+$color-shadow: rgba(0,0,0,0.2);
+
+.switch-container {
+  width: $width;
+  height: $height;
+  border-radius: $height;
+  background: $color-unchecked;
+  position: relative;
+  box-shadow: 2px 2px 4px $color-shadow;
+  $btn-width: calc($height - $padding * 2);
+  .switch-btn {
+    width: $btn-width;
+    height: $btn-width;
+    background: #fff;
+    border-radius: $btn-width;
+    position: absolute;
+    top: $padding;
+    left: $padding;
+    box-shadow: 2px 2px 4px $color-shadow;
+    transition: transform 0.3s ease-in-out;
+    &.switch-btn-checked {
+      transform: translateX(calc($width - $height));
+    }
+  }
+  &:hover {
+    background: $color-unchecked-hover;
+  }
+  &.switch-container-checked {
+    background: $color-checked;
+  }
+  &.switch-container-checked:hover {
+    background: $color-checked-hover;
+  }
+  transition: background 0.3s ease-in-out;
+}
