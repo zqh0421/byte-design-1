@@ -37,8 +37,8 @@ $color-shadow: rgba(0,0,0,0.2);
     display: block;
     color: #fff;
     font-size: $switch-children-font-size;
-    transition: padding-inline-start 0.3s ease-in-out;
-    transition: padding-inline-end 0.3s ease-in-out;
+    // transition: padding-inline-start 0.3s ease-in-out;
+    // transition: padding-inline-end 0.3s ease-in-out;
   }
   &::before {
     content: '';
