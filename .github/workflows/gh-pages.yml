@@ -31,6 +31,5 @@ jobs:
       - name: Deploy to Github
         uses: peaceiris/actions-gh-pages@v3
         with:
-          publish_branch: gh-pages # 打包的内容放到gh-pages分支下
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir': ./ # 打包后存放的文件
+          publish_dir: ./docs-dist # 打包后存放的文件
