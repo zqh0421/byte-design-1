@@ -71,13 +71,9 @@ import { Switch } from 'byte-design';
 
 const App: React.FC = () => (
   <>
-    <Switch checkedChildren="开启开启开启" uncheckedChildren="关闭" defaultChecked />
+    <Switch checkedChildren="开启" uncheckedChildren="关闭" defaultChecked />
     <br /><br />
     <Switch checkedChildren="1" uncheckedChildren="0" />
-    <br /><br />
-    <Switch checkedChildren="ON" uncheckedChildren="OFF" size="large" />
-    <br /><br />
-    <Switch checkedChildren="ON" uncheckedChildren="OFF" size="small" />
   </>
 );
 

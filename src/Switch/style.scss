@@ -26,12 +26,11 @@ $color-shadow: rgba(0,0,0,0.2);
   box-shadow: 2px 2px 4px $color-shadow;
   $btn-width: calc($height - $padding * 2);
   display: flex;
-  align-items: center;
-  text-align: center;
-  vertical-align: center;
   padding: 0 $padding;
   user-select: none;
   .switch-children {
+    height: 100%;
+    line-height: 200%;
     padding-inline-start: 28px;
     padding-inline-end: 9px;
     display: block;
@@ -69,6 +68,10 @@ $color-shadow: rgba(0,0,0,0.2);
   &:hover {
     background: $color-unchecked-hover;
     cursor: pointer;
+  }
+  &:active {
+    box-shadow: 0 0 0 4px lighten($primary, 45%);
+    transition-duration: 0s;
   }
   &.switch-container-disabled {
     background: $color-unchecked-disabled;
