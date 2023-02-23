@@ -25,7 +25,7 @@ jobs:
       - name: Build Project
         run: |
           npm install      
-          npm run build
+          npm run docs:build
 
        # 部署到GitHub
       - name: Deploy to Github
