@@ -18,16 +18,7 @@ npm i
 npm start
 ```
 
-
-## Additional Info (Feb 15)**
-This project is created using `npx create-dumi`, which is suggested by dumi.
-Currently, some changes have happened in the following dirs/files:
-- src
-- docs
-- .dumirc.ts
-- .gitpod.yml
-
-## How to Contribute? (Feb 15)**
+## How to Contribute? (Feb 23)**
 To add a component to this library, follow these steps using the Button component as an example:
 1. Create dirs and files:
     - path/to/src/Button
@@ -36,13 +27,14 @@ To add a component to this library, follow these steps using the Button componen
                 ---
                     group:
                     title: 通用型组件
+                    order: (OPTIONAL)
                 ---
 
                 # Button
 
                 这是一个按钮实例。
 
-                ```jsx
+                ```tsx
                 import { Button } from 'byte-design';
 
                 export default () => <Button content="按钮" />
@@ -60,7 +52,7 @@ To add a component to this library, follow these steps using the Button componen
 
                 This is an example button.
 
-                ```jsx
+                ```tsx
                 import { Button } from 'byte-design';
 
                 export default () => <Button content="test" />
@@ -68,18 +60,20 @@ To add a component to this library, follow these steps using the Button componen
             ```
         - index.tsx
             ```tsx
-                import React, { type FC } from 'react';
-                import './index.less'
-
-                const Button: FC<{ content: string }> = (props) => {
+                import React from 'react';
+                import './style.scss'
+                
+                const Button: React.FC<{ content: string }> = (props) => {
                     return (
                         <button className="test">{props.content}</button>
                     )
                 };
                 export default Button;
             ```
-        - index.less
-            ```less
+        - style.scss
+            ```scss
+                @import '../variables.scss';
+                
                 .test {
                     background-color: white;
                 }
@@ -99,6 +93,15 @@ To add a component to this library, follow these steps using the Button componen
 
 
 These steps provide a basic framework for adding a new component. After completing them, you can continue with your further development.
+
+## Additional Info (Feb 15)
+This project is created using `npx create-dumi`, which is suggested by dumi.
+Currently, some changes have happened in the following dirs/files:
+- src
+- docs
+- .dumirc.ts
+- .gitpod.yml
+- package.json
 
 ## Usage
 
