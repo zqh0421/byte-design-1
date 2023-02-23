@@ -14,7 +14,7 @@ export interface DateViewProps {
 }
 const DateView: FC<DateViewProps> = ({ calendar, setCalendar }) => {
   const { year, monthIndex } = calendar;
-  const context = useContext(DateContext)
+  const context = useContext(DateContext) // 冗余，直接在DatePicker中使用context
   const toPreMonth = () => {
     const preMonthIndex = (monthIndex - 1 + 12) % 12;
     const preYear = year + Math.floor((monthIndex - 1) / 12);
