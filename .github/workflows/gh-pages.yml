@@ -3,8 +3,7 @@ name: github pages
 on:
   push:
     branches:
-      - zqianhui  # 只有在dumi-version分支发生push事件时触发
-  pull_request:
+      - zqianhui  # 只有在该分支发生push事件时触发
 
 # 工作流
 jobs:
@@ -14,13 +13,13 @@ jobs:
     steps:
       # 拉代码
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       # 下载node，高于dumi规定的node版本即可
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 16
 
       # 打包代码
       - name: Build Project
@@ -30,7 +29,8 @@ jobs:
 
        # 部署到GitHub
       - name: Deploy to Github
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: peaceiris/actions-gh-pages@v3
         with:
           branch: gh-pages # 打包的内容放到gh-pages分支下
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           folder: ./ # 打包后存放的文件
