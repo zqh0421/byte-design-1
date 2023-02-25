@@ -1,4 +1,5 @@
 ---
+title: Switch
 group:
   title: Data Entry
   order: 3
@@ -62,18 +63,20 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### Text
-Switch with text.
+### Text & Icons
+Switch with text and icons.
 
 ```tsx
 import React from 'react';
-import { Switch } from 'byte-design';
+import { Switch, Icon } from 'byte-design';
 
 const App: React.FC = () => (
   <>
     <Switch checkedChildren="开启" uncheckedChildren="关闭" defaultChecked />
     <br /><br />
     <Switch checkedChildren="1" uncheckedChildren="0" />
+    <br /><br />
+    <Switch checkedChildren={<Icon icon="house"/>} uncheckedChildren={<Icon icon="star"/>} />
   </>
 );
 
@@ -81,7 +84,7 @@ export default App;
 ```
 
 ### Different Sizes
-`size="small"` represents a small sized switch. Two sizes - `default`, `small` and `large` are available now.
+`size="small"` represents a small sized switch. Three sizes - `default`, `small` and `large` are available now.
 
 ```tsx
 import React from 'react';
@@ -129,6 +132,6 @@ export default App;
 | disabled | Disable switch | boolean | false |
 | onChange | Trigger when the checked state is changing | function(checked: boolean, event: Event) | - |
 | onClick | Trigger when clicked | function(checked: boolean, event: Event) | - |
-<!-- | loading | Loading state of switch | boolean | false | -->
 | checkedChildren | The content to be shown when the state is checked | string | - |
 | uncheckedChildren | The content to be shown when the state is unchecked | string | - |
+<!-- | loading | Loading state of switch | boolean | false | -->

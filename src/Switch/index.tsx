@@ -31,15 +31,19 @@ const Switch: React.FC<ISwitchProps> = (props) => {
   const switchRef = useRef(null);
   
   const handleClick = () => {
+    onClick && onClick(isChecked)
     if (!disabled && !loading) {
       setIsChecked(!isChecked)
-      onClick && onClick(isChecked)
     }
   }
 
   useEffect(() => {
     onChange && onChange(isChecked)
   }, [isChecked])
+
+  useEffect(() => {
+    setIsChecked(new Boolean(checked))
+  }, [checked])
 
   useEffect(() => {
     if (switchRef.current) {
@@ -57,7 +61,7 @@ const Switch: React.FC<ISwitchProps> = (props) => {
     }
   }, [size])
   return (
-    <>
+    <div className={className}>
       <div className="wrapping" ref={switchRef}>
         <div
           className={
@@ -73,7 +77,7 @@ const Switch: React.FC<ISwitchProps> = (props) => {
             /> */}
         </div>
       </div>
-    </>
+    </div>
   )
 };
 

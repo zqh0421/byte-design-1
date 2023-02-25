@@ -75,6 +75,7 @@ $color-shadow: rgba(0,0,0,0.2);
   }
   &.switch-container-disabled {
     background: $color-unchecked-disabled;
+    box-shadow: 2px 2px 4px $color-shadow;
     &:hover {
       cursor: not-allowed;
     }

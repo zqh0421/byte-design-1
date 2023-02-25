@@ -25,12 +25,13 @@ To add a component to this library, follow these steps using the Button componen
         - index.zh-CN.md
             ```md
                 ---
-                    group:
+                title: 按钮
+                group:
                     title: 通用型组件
                     order: (OPTIONAL)
                 ---
 
-                # Button
+                # 按钮
 
                 这是一个按钮实例。
 
@@ -43,6 +44,7 @@ To add a component to this library, follow these steps using the Button componen
         - index.en-US.md
             ```md
                 ---
+                title: Button
                 group:
                     title: General
                     order: (OPTIONAL)
