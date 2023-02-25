@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, ReactNode } from 'react'
+import { Icon } from 'byte-design'
 import './style.scss'
 
 interface ISwitchProps {
@@ -9,6 +10,7 @@ interface ISwitchProps {
   disabled?: boolean
   onChange?: Function
   onClick?: Function
+  autoFocus?: boolean
   loading?: boolean
   checkedChildren?: ReactNode
   uncheckedChildren?: ReactNode
@@ -16,6 +18,7 @@ interface ISwitchProps {
 
 const Switch: React.FC<ISwitchProps> = (props) => {
   const {
+    autoFocus,
     defaultChecked,
     onClick,
     onChange,
@@ -26,67 +29,69 @@ const Switch: React.FC<ISwitchProps> = (props) => {
     checked,
     checkedChildren,
     uncheckedChildren,
+    ...otherProps
   } = props
-  const [isChecked, setIsChecked] = useState<boolean>(defaultChecked || checked || false);
+  const [isChecked, setIsChecked] = useState<boolean>(defaultChecked || false);
   const switchRef = useRef(null);
-  
+
   const handleClick = () => {
     onClick && onClick(isChecked)
-    if (!disabled && !loading) {
-      setIsChecked(!isChecked)
-    }
+  }
+
+  const handleChange = () => {
+    onChange && onChange(!isChecked)
+    setIsChecked(!isChecked)    
   }
 
   useEffect(() => {
-    onChange && onChange(isChecked)
-  }, [isChecked])
-
-  useEffect(() => {
-    setIsChecked(new Boolean(checked))
+    if (checked !== undefined) {
+      setIsChecked(checked)
+    }
   }, [checked])
 
   useEffect(() => {
     if (switchRef.current) {
       let dom = switchRef.current as HTMLElement
       if (size==="small") {
-        dom.style.setProperty("--switch-width","42px")
-        dom.style.setProperty("--switch-font-size", "xx-small")
+        dom.style.setProperty("--switch-width","56px")
+        dom.style.setProperty("--switch-font-size", "0.875rem")
       } else if (size==="large") {
-        dom.style.setProperty("--switch-width","60px")
-        dom.style.setProperty("--switch-font-size", "medium")
+        dom.style.setProperty("--switch-width","80px")
+        dom.style.setProperty("--switch-font-size", "1.25rem")
       } else {
-        dom.style.setProperty("--switch-width","50px")
-        dom.style.setProperty("--switch-font-size", "small")
+        dom.style.setProperty("--switch-width","64px")
+        dom.style.setProperty("--switch-font-size", "1rem")
       }
     }
   }, [size])
+
   return (
     <div className={className}>
-      <div className="wrapping" ref={switchRef}>
-        <div
-          className={
-            `switch-container`+
-            `${isChecked ? ' switch-container-checked' : ''}`+
-            `${disabled || loading ? ' switch-container-disabled' : ''}`
-          }
+      <label className={`switch-container`} ref={switchRef}>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          autoFocus={autoFocus}
+          disabled={disabled || loading}
+          onChange={handleChange}
           onClick={handleClick}
-        >
-          <span className={`switch-children`}>{isChecked ? checkedChildren : uncheckedChildren}</span>
-            {/* loading && <div
-              className={`switch-loading ${isChecked ? 'switch-loading-checked': ''}`}
-            /> */}
-        </div>
-      </div>
+          className={`switch-box ${loading ? 'switch-loading' : ''}`}
+          {...otherProps}
+        />
+        <div className="switch-btn">{ loading ? <Icon icon="spinner" className="loading" /> : ''}</div>
+        <span className="switch-children">
+          {isChecked ? checkedChildren : uncheckedChildren}
+        </span>
+      </label>
     </div>
   )
 };
 
 Switch.defaultProps = {
-  checked: false,
-  size: "default",
   defaultChecked: false,
   disabled: false,
-  onChange: () => {}
+  autoFocus: false,
+  loading: false,
 }
 
 export default Switch;

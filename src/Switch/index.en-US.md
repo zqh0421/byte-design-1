@@ -52,7 +52,7 @@ const App: React.FC = () => {
   return (
     <>
       <Switch disabled={disabled} defaultChecked />
-      <br /><br />
+      <br />
       <button onClick={toggle}>
         Toggle disabled
       </button>
@@ -72,10 +72,10 @@ import { Switch, Icon } from 'byte-design';
 
 const App: React.FC = () => (
   <>
-    <Switch checkedChildren="开启" uncheckedChildren="关闭" defaultChecked />
-    <br /><br />
+    <Switch checkedChildren="开" uncheckedChildren="关" defaultChecked />
+    <br />
     <Switch checkedChildren="1" uncheckedChildren="0" />
-    <br /><br />
+    <br />
     <Switch checkedChildren={<Icon icon="house"/>} uncheckedChildren={<Icon icon="star"/>} />
   </>
 );
@@ -93,9 +93,9 @@ import { Switch } from 'byte-design';
 const App: React.FC = () => (
   <>
     <Switch size="small" defaultChecked />
-    <br /><br />
+    <br />
     <Switch defaultChecked />
-    <br /><br />
+    <br />
     <Switch size="large" defaultChecked />
   </>
 );
@@ -103,7 +103,7 @@ const App: React.FC = () => (
 export default App;
 ```
 
-<!-- ### Loading
+### Loading
 Mark a pending state of switch.
 
 ```tsx
@@ -119,12 +119,13 @@ const App: React.FC = () => (
 );
 
 export default App;
-``` -->
+```
 
 ## API
 
 | Property | Description | Type | Default |
 | -- | -- | -- | -- |
+| autoFocus | Automatically focus on switch | boolean | false |
 | className | The additional class to Switch | string | - |
 | checked | Determine whether the Switch is checked | boolean | false |
 | size | The size of `Switch`, options: `default` `small` `large` | string | `default` |
@@ -134,4 +135,4 @@ export default App;
 | onClick | Trigger when clicked | function(checked: boolean, event: Event) | - |
 | checkedChildren | The content to be shown when the state is checked | string | - |
 | uncheckedChildren | The content to be shown when the state is unchecked | string | - |
-<!-- | loading | Loading state of switch | boolean | false | -->
+| loading | Loading state of switch | boolean | false |

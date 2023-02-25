@@ -72,9 +72,9 @@ import { Switch, Icon } from 'byte-design';
 const App: React.FC = () => (
   <>
     <Switch checkedChildren="开启" uncheckedChildren="关闭" defaultChecked />
-    <br /><br />
+    <br />
     <Switch checkedChildren="1" uncheckedChildren="0" />
-    <br /><br />
+    <br />
     <Switch checkedChildren={<Icon icon="house"/>} uncheckedChildren={<Icon icon="star"/>} />
   </>
 );
@@ -92,9 +92,9 @@ import { Switch } from 'byte-design';
 const App: React.FC = () => (
   <>
     <Switch size="small" defaultChecked />
-    <br /><br />
+    <br />
     <Switch defaultChecked />
-    <br /><br />
+    <br />
     <Switch size="large" defaultChecked />
   </>
 );
@@ -102,8 +102,8 @@ const App: React.FC = () => (
 export default App;
 ```
 
-<!-- ### Loading
-Mark a pending state of switch.
+### 加载
+标记开关的加载中状态。
 
 ```tsx
 import React from 'react';
@@ -118,12 +118,13 @@ const App: React.FC = () => (
 );
 
 export default App;
-``` -->
+```
 
 ## API
 
 | 属性 | 描述 | 类型 | 默认值 |
 | -- | -- | -- | -- |
+| autoFocus | 自动聚焦 | boolean | false |
 | className | 为开关添加额外类名 | string | - |
 | checked | 决定开关的“开/关”状态 | boolean | false |
 | size | `Switch`的尺寸，备选项有： `default` `small` `large` | string | `default` |
@@ -133,4 +134,4 @@ export default App;
 | onClick | 当点击开关时触发 | function(checked: boolean, event: Event) | - |
 | checkedChildren | 开关在“开”状态下显示的内容 | string | - |
 | uncheckedChildren | 开关在“关”状态下显示的内容  | string | - |
-<!-- | loading | Loading state of switch | boolean | false | -->
+| loading | 开关加载状态 | boolean | false |
