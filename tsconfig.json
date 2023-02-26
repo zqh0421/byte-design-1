@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["ES2015", "ESNext", "DOM"],
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,

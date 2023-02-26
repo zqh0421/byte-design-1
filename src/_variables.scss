@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // 全局上的色彩、字体配置
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
