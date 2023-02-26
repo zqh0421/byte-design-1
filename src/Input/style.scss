@@ -1,6 +1,6 @@
-$input-height-lg: 40px;
-$input-height-md: 32px;
-$input-height-sm: 24px;
+// $input-height-lg: 40px;
+// $input-height-md: 32px;
+// $input-height-sm: 24px;
 
 .container {
   width: 100%;
@@ -9,7 +9,7 @@ $input-height-sm: 24px;
   color: #000000;
   font-weight: 300;
   border-radius: 0.375rem;
-
+  margin: 0.25rem;
   outline: black solid 1px
 }
 
@@ -32,8 +32,9 @@ $input-height-sm: 24px;
 
 .input:focus {
   outline-style: solid;
-  outline-width: 2px;
+  outline-width: 1px;
   outline-color: #5290fb;
+  box-shadow: 1px 3px 3px lightblue;
 }
 
 .prefix {
