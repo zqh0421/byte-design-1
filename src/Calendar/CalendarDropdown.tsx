@@ -1,16 +1,22 @@
-import { throttle } from 'lodash';
+import classnames from 'classnames';
 import React, { FC, useEffect, useRef, useState } from 'react';
-import CalendarButton, { ArrowButton } from './CalendarButton';
-import { createYears,createMonths } from './generator';
-import './style.scss';
 import { CalendarProps } from './Calendar';
-export interface CalendarDropdownProps extends CalendarProps{
+import CalendarButton, { ArrowButton } from './CalendarButton';
+import { createMonths, createYears } from './generator';
+import './style.scss';
+export interface CalendarDropdownProps extends CalendarProps {
   items: any[];
   mode: 'year' | 'month';
-  setyearDispay: (x:boolean)=>void;
+  setDispay: (x: boolean) => void;
 }
 
-const CalendarDropdown: FC<CalendarDropdownProps> = ({ items, mode, calendar, selectCalendar,setyearDispay }) => {
+const CalendarDropdown: FC<CalendarDropdownProps> = ({
+  items,
+  mode,
+  calendar,
+  selectCalendar,
+  setDispay,
+}) => {
   const [dates, setDates] = useState(items);
   const divRef = useRef<HTMLDivElement>(null);
   const n = items.length;
@@ -19,8 +25,8 @@ const CalendarDropdown: FC<CalendarDropdownProps> = ({ items, mode, calendar, se
     if (divRef.current) {
       divRef.current.addEventListener('wheel', onwheel, { passive: false });
     }
-    console.log('current date:' + dates);
-    return () => { // 组件卸载时移除listener
+    return () => {
+      // 组件卸载时移除listener
       if (divRef.current) {
         divRef.current.removeEventListener('wheel', onwheel);
       }
@@ -34,39 +40,49 @@ const CalendarDropdown: FC<CalendarDropdownProps> = ({ items, mode, calendar, se
       if (mode === 'year') {
         newDate = createYears(prevDates[Math.floor(n / 2)] + step);
       } else {
-        newDate = createMonths(prevDates[Math.floor(n / 2)] + step); // temp
+        newDate = createMonths(prevDates[Math.floor(n / 2)] + step);
       }
       return newDate;
     });
   };
-  let _timer:any = null;
+  let _timer: any = null;
   const onwheel = (evt: WheelEvent) => {
     evt.preventDefault();
     const step = evt.deltaY > 0 ? 1 : -1; // 根据deltaY控制方向
     // 节流控制速度
-    if (_timer) return 
-    _timer = setTimeout(()=>{
-      changeDate(step)
-      _timer = null
-    }, 60)
+    if (_timer) return;
+    _timer = setTimeout(() => {
+      changeDate(step);
+      _timer = null;
+    }, 60);
   };
-  const clickDate = (year:number)=>{
-    if(mode === 'year'){
-      selectCalendar({year, monthIndex:calendar.monthIndex})
-      setyearDispay(false)
-    }else{
-      selectCalendar({year, monthIndex:calendar.monthIndex})
+  const clickDate = (date: number) => {
+    if (mode === 'year') {
+      selectCalendar({ year: date, monthIndex: calendar.monthIndex });
+    } else {
+      selectCalendar({ year: calendar.year, monthIndex: date - 1 });
     }
-
-  }
+    setDispay(false);
+  };
   return (
     <div className="dropdown" ref={divRef}>
       <ArrowButton icon="angle-up" onClick={() => changeDate(-1)} />
       <ul>
         {dates.map((date, i) => {
+          // 如果是当前日期，高亮显示
+          const isDate =
+            mode === 'year'
+              ? date === calendar.year
+              : date - 1 === calendar.monthIndex;
+          const classes = classnames('dropdown-button', {
+            'is-date': isDate,
+          });
           return (
             <li key={i}>
-              <CalendarButton className="dropdown-button" onClick={()=>clickDate(date)}>
+              <CalendarButton
+                className={classes}
+                onClick={() => clickDate(date)}
+              >
                 {date}
               </CalendarButton>
             </li>

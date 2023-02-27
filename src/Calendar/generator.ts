@@ -31,8 +31,10 @@ export const createYears = (currentYear: number): number[] =>{
 
 // 下拉菜单-月份
 export const createMonths = (currentMonth: number):number[] =>{
-  const start = currentMonth-2 >= 1? currentMonth-2: 1
-  const end = currentMonth+2 <=12 ? currentMonth+2:12
+  let start = currentMonth-2 >= 1? currentMonth-2: 1
+  let end = currentMonth+2 <=12 ? currentMonth+2:12
+  if(start === 1 && end < 5) end = 5
+  if(end === 12 && start > 8) start = 8
   const res = []
   for(let i = start; i <= end; i++){
     res.push(i)

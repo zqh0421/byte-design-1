@@ -135,6 +135,10 @@ tbody {
     &:focus {
       outline: 0;
     }
+    &.is-date{
+      background-color: $base-color;
+      color: white;
+    }
   }
 }
 
@@ -150,7 +154,7 @@ tbody {
       outline: 0;
     }
   }
-  .year-picker{
+  .year-picker, .month-picker{
     position: relative;
   }
 }
