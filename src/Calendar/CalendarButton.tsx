@@ -1,5 +1,6 @@
 import Button from 'byte-design/Button';
-import Icon from 'byte-design/Icon';
+import {Icon} from 'byte-design';
+import {FontAwesomeIconProps} from '@fortawesome/react-fontawesome'
 import classnames from 'classnames';
 import React from 'react';
 import './style.scss';
@@ -13,12 +14,12 @@ const CalendarButton: React.FC<React.ButtonHTMLAttributes<HTMLElement>> = ({
 };
 
 interface ArrowButtonProps extends React.HTMLAttributes<HTMLElement> {
-  icon: 'arrow-left' | 'arrow-right';
+  icon: FontAwesomeIconProps["icon"];
 }
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({ icon, onClick }) => {
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} className='arrow-button'>
       <Icon icon={icon} theme="primary" size="lg" />
     </Button>
   );

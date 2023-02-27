@@ -30,7 +30,17 @@ $base-color: darken($primary, 10%);
     color: white;
   }
 }
-table{
+.arrow-button {
+  border: 0;
+  box-shadow: unset;
+  &:hover {
+    background-color: $base-color;
+    .icon-primary {
+      color: white;
+    }
+  }
+}
+table {
   width: 100%;
 }
 thead {
@@ -49,37 +59,37 @@ thead {
     }
   }
 }
-tbody{
-  tr{
+tbody {
+  tr {
     text-align: center;
   }
 }
-.is-today{
+.is-today {
   background-color: lighten($base-color, 60%);
 }
-.not-current-month{
+.not-current-month {
   opacity: 0.5;
 }
-.is-selected{
+.is-selected {
   background-color: $base-color;
   color: white;
 }
 
 // layout
-.layout-container{
+.layout-container {
   display: flex;
   flex-direction: column;
-  .layout-header{
+  .layout-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.4rem;
   }
-  .layout-body{
+  .layout-body {
     // flex: 1;
   }
-  .layout-footer{
-    &::before{
+  .layout-footer {
+    &::before {
       content: '';
       border-bottom: 0.1rem solid $gray-400;
       display: block;
@@ -91,7 +101,7 @@ tbody{
 }
 
 // calendar
-.calendar{
+.calendar {
   width: 27rem;
   height: 29rem;
   padding: 15px;
@@ -99,3 +109,49 @@ tbody{
   border-radius: 1.5%;
   margin: 1rem 0;
 }
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  height: 17rem;
+  justify-content: space-between;
+  border: 0.1rem solid $gray-300;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+  width: 4rem;
+  z-index: 1000;
+  background-color: white;
+  position: absolute;
+  top: 2.5rem;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .dropdown-button {
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.month-year-picker {
+  display: flex;
+  width: 9rem;
+  justify-content: space-between;
+  .picker-button {
+    border-radius: 0;
+    margin: 0;
+    width: 4rem;
+    &:focus {
+      outline: 0;
+    }
+  }
+  .year-picker{
+    position: relative;
+  }
+}
+

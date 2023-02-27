@@ -17,3 +17,25 @@ export const createWeeks = (year: number, monthIndex: number): Dayjs[][] => {
 export const createWeekNames = (): string[] => {
   return ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 };
+
+// 下拉菜单-年份
+export const createYears = (currentYear: number): number[] =>{
+  const start = currentYear - 2
+  const end = currentYear + 2
+  const res = []
+  for(let i = start; i <= end; i++){
+    res.push(i)
+  }
+  return res
+}
+
+// 下拉菜单-月份
+export const createMonths = (currentMonth: number):number[] =>{
+  const start = currentMonth-2 >= 1? currentMonth-2: 1
+  const end = currentMonth+2 <=12 ? currentMonth+2:12
+  const res = []
+  for(let i = start; i <= end; i++){
+    res.push(i)
+  }
+  return res
+}

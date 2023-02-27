@@ -7,14 +7,14 @@ interface IDateContext {
   onSelectDate?: Function; // 状态和改变状态的函数一起传
 }
 interface DateManagerProps {
-  childChange?: Function;
+  closePicker?: Function;
   children?: React.ReactNode;
 }
 
 const initContext = { date: dayjs(), textInput: '' };
 export const DateContext = createContext<IDateContext>(initContext); // 不能放组件里，要export
 
-const DateManager: FC<DateManagerProps> = ({ childChange, children }) => {
+const DateManager: FC<DateManagerProps> = ({ closePicker, children }) => {
   const [data, setData] = useState({
     date: dayjs(),
     textInput: '',
@@ -23,9 +23,9 @@ const DateManager: FC<DateManagerProps> = ({ childChange, children }) => {
     const newData = { date, textInput: dayjs(date).format('YYYY-MM-DD') };
 
     setData(newData);
-    if (childChange) {
-      // 暂时没用
-      childChange(evt, newData);
+    if (closePicker) {
+      // 关闭选择器
+      closePicker();
     }
   };
   const passedContext: IDateContext = {
