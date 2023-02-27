@@ -5,35 +5,31 @@ import { ArrowButton } from './CalendarButton';
 import CalendarLayout from './CalendarLayout';
 import DatePicker from './DatePicker';
 import {DateContext} from './DateManager'
-export interface DateViewProps {
-  calendar: {
-    year: number;
-    monthIndex: number;
-  };
-  setCalendar: Function;
-}
-const DateView: FC<DateViewProps> = ({ calendar, setCalendar }) => {
+import MonthYearPicker from './MonthYearPicker';
+import { CalendarProps } from './Calendar';
+
+const DateView: FC<CalendarProps> = ({ calendar, selectCalendar }) => {
   const { year, monthIndex } = calendar;
-  const context = useContext(DateContext)
+  const context = useContext(DateContext) // 冗余，直接在DatePicker中使用context
   const toPreMonth = () => {
     const preMonthIndex = (monthIndex - 1 + 12) % 12;
     const preYear = year + Math.floor((monthIndex - 1) / 12);
-    setCalendar({ year: preYear, monthIndex: preMonthIndex });
+    selectCalendar({ year: preYear, monthIndex: preMonthIndex });
   };
   const toNextMonth = () => {
     const nextMonthIndex = (monthIndex + 1) % 12;
     const nextYear = year + Math.floor((monthIndex + 1) / 12);
 
-    setCalendar({ year: nextYear, monthIndex: nextMonthIndex });
+    selectCalendar({ year: nextYear, monthIndex: nextMonthIndex });
   };
   const toToday = () => {
-    setCalendar({year:dayjs().year(), monthIndex:dayjs().month()})
+    selectCalendar({year:dayjs().year(), monthIndex:dayjs().month()})
   }
   return (
     <CalendarLayout
       headerElement={{
         leftElement: <ArrowButton icon="arrow-left" onClick={toPreMonth} />,
-        middleElement: <p>{`${year}年${monthIndex + 1}月`}</p>,
+        middleElement: <MonthYearPicker calendar={calendar} selectCalendar={selectCalendar}/>,
         rightElement: <ArrowButton icon="arrow-right" onClick={toNextMonth} />,
       }}
       bodyElement=<DatePicker

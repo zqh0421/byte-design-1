@@ -8,7 +8,7 @@ const CalendarInput = () => {
       <input
         type="text"
         value={context.textInput}
-        onChange={() => console.log('change')}
+        onChange={() => ()=>0}
         placeholder={'点击选择日期'}
       />
   );
