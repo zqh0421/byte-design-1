@@ -28,9 +28,9 @@ const DateView: FC<CalendarProps> = ({ calendar, selectCalendar }) => {
   return (
     <CalendarLayout
       headerElement={{
-        leftElement: <ArrowButton icon="arrow-left" onClick={toPreMonth} />,
+        leftElement: <ArrowButton icon="angles-left" onClick={toPreMonth} />,
         middleElement: <MonthYearPicker calendar={calendar} selectCalendar={selectCalendar}/>,
-        rightElement: <ArrowButton icon="arrow-right" onClick={toNextMonth} />,
+        rightElement: <ArrowButton icon="angles-right" onClick={toNextMonth} />,
       }}
       bodyElement=<DatePicker
         calendar={calendar}

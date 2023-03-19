@@ -65,7 +65,7 @@ tbody {
   }
 }
 .is-today {
-  background-color: lighten($base-color, 60%);
+  background-color: lighten($base-color, 50%);
 }
 .not-current-month {
   opacity: 0.5;
@@ -152,6 +152,9 @@ tbody {
     width: 4rem;
     &:focus {
       outline: 0;
+    }
+    &:hover{
+      border-radius: 5%;
     }
   }
   .year-picker, .month-picker{
